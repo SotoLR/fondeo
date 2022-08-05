@@ -1,14 +1,15 @@
-use prueba;
+create database prueba;
+-- psql prueba;
 
 CREATE TABLE usuarios(
 	uid serial primary key,
-	saldo real,
-	secret_hash VARCHAR(64)
+	saldo real NOT NULL,
+	secret VARCHAR(64) NOT NULL --SHA256 hashes are 64 chars long
 );
 
 CREATE TABLE oportunidades(
 	uid serial primary key,
-	total real
+	total real NOT NULL
 );
 
 CREATE TABLE usuario_oportunidad(
@@ -17,4 +18,4 @@ CREATE TABLE usuario_oportunidad(
 	cantidad real
 );
 
-INSERT INTO usuarios VALUES ();
+-- below this is not done
