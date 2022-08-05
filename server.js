@@ -2,37 +2,59 @@ const http = require('http');
 
 http.createServer((request, response) => {
   const { headers, method, url } = request;
-  if(method === 'POST' && url === '/invertir'){
-  	let body = [];
-  	request.on('data', (chunk) => {
-  		body.push(chunk);
-  	}).on('end', () => {
 
-      response.on('error', (err) => {
-        console.error(err);
-      });
+  if(method === 'POST'){
+    let body = []
+    switch(url){
+      case '/invertir':
+        request.on('data', (chunk) => {
+          body.push(chunk);
+        }).on('end', () => {
 
-      console.log(body);
+          response.on('error', (err) => {
+            console.error(err);
+          });
 
-  		body = Buffer.concat(body).toString();
+          console.log(body);
 
-      const params = JSON.parse(body);
+          body = Buffer.concat(body).toString();
 
-      response.writeHead(200, {
-        'Content-Type': 'application/json'
-      });
+          const params = JSON.parse(body);
 
-      const responseBody = {
-        headers,
-        body,
-        params
-      }
+          response.writeHead(201, {
+            'Content-Type': 'application/json'
+          });
 
-  		response.end(body);
-  	});
+          const responseBody = {
+            headers,
+            body,
+            params
+          }
+
+          response.end(body);
+        });
+      break;
+      case '/login':
+      break;
+      case '/renovar':
+      break;
+      default:
+        response.statusCode = 404;
+        response.end();
+      break;
+    }
+  }else if(method === 'GET'){
+    switch(url){
+      case '/test':
+      break;
+      default:
+        response.statusCode = 404;
+        response.end();
+      break;
+    }
   }else{
-  	response.statusCode = 404;
-  	response.end();
+    response.statusCode = 404;
+    response.end();
   }
 }).listen(8080);
 
