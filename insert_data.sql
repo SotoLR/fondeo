@@ -18,13 +18,13 @@ INSERT INTO usuarios (saldo, secret) VALUES (231.8, '3e89cc9ef08e34623972cbe969a
 INSERT INTO usuarios (saldo, secret) VALUES (320.64, 'aa0d0aeff81fa0a55edf326114b02f34efb8aaa9bc12e2e2bc3ac381cd86b3b6'); -- dog398
 INSERT INTO usuarios (saldo, secret) VALUES (155.34, '08385dd0cb313b2cafb8206cf4a5e95fa0616a476027ba4c2754955991792d43'); -- tiger856
 INSERT INTO usuarios (saldo, secret) VALUES (426.57, '725d8d237ef38b966e3c914741e3bce30699d8e2ac1e06c01a032e240e44f7e6'); -- cat339
-INSERT INTO oportunidades (total) VALUES (536);
-INSERT INTO oportunidades (total) VALUES (574);
-INSERT INTO oportunidades (total) VALUES (989);
-INSERT INTO oportunidades (total) VALUES (586);
-INSERT INTO oportunidades (total) VALUES (419);
-INSERT INTO oportunidades (total) VALUES (788);
-INSERT INTO oportunidades (total) VALUES (341);
-INSERT INTO oportunidades (total) VALUES (758);
-INSERT INTO oportunidades (total) VALUES (303);
-INSERT INTO oportunidades (total) VALUES (10);
+INSERT INTO oportunidades (total,restante) VALUES (536, 536);
+INSERT INTO oportunidades (total,restante) VALUES (574, 574);
+INSERT INTO oportunidades (total,restante) VALUES (989, 989);
+INSERT INTO oportunidades (total,restante) VALUES (586, 586);
+INSERT INTO oportunidades (total,restante) VALUES (419, 419);
+INSERT INTO oportunidades (total,restante) VALUES (788, 788);
+INSERT INTO oportunidades (total,restante) VALUES (341, 341);
+INSERT INTO oportunidades (total,restante) VALUES (758, 758);
+INSERT INTO oportunidades (total,restante) VALUES (303, 303);
+INSERT INTO oportunidades (total,restante) VALUES (100, 100);
