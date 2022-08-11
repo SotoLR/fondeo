@@ -36,7 +36,8 @@
 
 1. Correr el servidor de NodeJS con el siguiente comando
 
-`node server.js`
+	`node server.js`
+
 2. Hacer peticiones a los endpoints disponibles en el puerto local 8080
 
 ### Peticiones disponibles:
