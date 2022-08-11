@@ -33,28 +33,21 @@ const registrarInversion = async (usuario, oportunidad, inversion) => {
 		console.log(e);
 		switch(e.table){
 			case 'usuarios':
-				//handle 
 				if(e.constraint && e.constraint == 'usuarios_saldo_check'){
-					// console.log('Not enough money')
 					status = {http_status: 400, status_code: 'E10', status_detail: 'El  usuario no tiene suficiente saldo para invertir en esta oportunidad'};
 				}else{
-					// console.log('unknown error modifying usuario')
 					status = {http_status: 500, status_code: 'E11', status_detail: 'Error desconocido al modificar el saldo del usuario'};
 				}
 			break;
 			case 'oportunidades':
 				if(e.constraint && e.constraint == 'oportunidades_restante_check'){
-					// console.log('overfunded')
 					status = {http_status: 400, status_code: 'E20', status_detail: 'La oportunidad elegida requiere menos fondos de los que el usuario quiere invertir'};
 				}else{
-					console.log('unkown error modifying oportunidad')
 					status = {http_status: 500, status_code: 'E21', status_detail: 'Error desconocido al modificar datos de la oportunidad'};
 				}
-				//handle
 			break;
 			case 'usuario_oportunidad':
 				//handle insert failure
-				// console.log('error inserting relation')
 				status = {http_status: 500, status_code: 'E30', status_detail: 'Error al registrar la inversión'};
 			break;
 			default:
@@ -68,6 +61,10 @@ const registrarInversion = async (usuario, oportunidad, inversion) => {
 		client.release();
 		return status;
 	}
+}
+
+const obtenerToken = async () => {
+	const client = await pool.connect();
 }
 
 http.createServer((request, response) => {
@@ -93,9 +90,13 @@ http.createServer((request, response) => {
 						console.error(err);
 					});
 
-					// console.log(body);
-
 					const params = JSON.parse(body);
+
+					if(!params.usuario || !params.oportunidad || !params.cantidad){
+						response.statusCode = 400;
+						response.end();
+						break;
+					}
 
 					const {http_status, status_code, status_detail} = await registrarInversion(params.usuario, params.oportunidad, params.cantidad);
 
@@ -110,8 +111,29 @@ http.createServer((request, response) => {
 				});
 			break;
 			case '/login':
-				response.statusCode = 501;
-				response.end();
+				request.on('data', (chunk) => {
+					body.push(chunk);
+				}).on('end', async () => {
+					body = Buffer.concat(body).toString();
+
+					response.on('error', (err) => {
+						console.log(err);
+					});
+
+					const params = JSON.parse(body);
+
+					if(!params.usuario || !params.password){
+						response.statusCode = 400;
+						response.end();
+					}
+
+					//get token
+
+
+				});
+
+				// response.statusCode = 501;
+				// response.end();
 			break;
 			case '/renovar':
 				response.statusCode = 501;

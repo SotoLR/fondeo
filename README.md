@@ -6,8 +6,9 @@
 	- Versión para Windows 6.14.15
 - [Node.js](https://nodejs.org/en/)
 	- Versión para Windows 14.18.1
-	- La única dependencia que se usa es el módulo _pg_. Se puede instalar con el siguiente comando
+	- Dependencia: _pg_. Se puede instalar con el siguiente comando
 		`npm install pg`
+	- Dependencia: _crypto_.
 - [PostgreSQL](https://www.postgresql.org/download/)
 	- Versión 10.21
 
@@ -29,6 +30,8 @@
     	- Cada oportunidad tendrá una meta de inversión de entre $1 y $1000.
     	- Cada usuario tendrá un presupuesto de entre $100 y $1000
     3. Correr el script _insert_data.sql_ (o el que se haya creado con el script de Python)
+    	- El comentario al final de cada sentencia de inserción de usuario es la contraseña antes de que se ejecute el hash
+    	- El algoritmo hash usado para esconder la contraseña es sha256
 
 ## Uso
 

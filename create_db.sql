@@ -5,6 +5,7 @@ create database prueba;
 
 CREATE TABLE usuarios(
 	uid serial primary key,
+	nombre_usuario VARCHAR(32) UNIQUE NOT NULL,
 	saldo real NOT NULL CHECK (saldo >=0),
 	secret VARCHAR(64) NOT NULL --SHA256 hashes are 64 chars long
 );
