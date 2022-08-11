@@ -35,6 +35,7 @@
 ## Uso
 
 1. Correr el servidor de NodeJS con el siguiente comando
+
 `node server.js`
 2. Hacer peticiones a los endpoints disponibles en el puerto local 8080
 
@@ -85,4 +86,4 @@ El 9 se usa para errores internos generales.
 
 El segundo número del código determina el origen del error. Los errores que terminan con un número mayor a cero son errores internos del servidor. Los que terminan con un número cero son por error de la petición.
 
-El detalle simplemente es un mensae explicando el error.
+El detalle simplemente es un mensaje explicando el error.
