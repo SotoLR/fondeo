@@ -2,7 +2,7 @@
 
 ## Requerimientos
 
-- [Node Package Manager[(https://www.npmjs.com/)
+- [Node Package Manager](https://www.npmjs.com/)
 	- Versión para Windows 6.14.15
 - [Node.js](https://nodejs.org/en/)
 	- Versión para Windows 14.18.1
@@ -34,17 +34,11 @@
 
 1. Correr el servidor de NodeJS con el siguiente comando
 `node server.js`
-2. Hacer peticiones POST a los endpoints disponibles en el puerto local 8080
+2. Hacer peticiones a los endpoints disponibles en el puerto local 8080
 
 ### Peticiones disponibles:
 #### /invertir
 ##### Tipo: POST
-##### Encabezado
-```JSON
-{
-	"" : "",
-}
-```
 ##### Cuerpo 
 ```JSON
 {
@@ -61,6 +55,30 @@ Evidentemente, se deben remplazar los valores de cada campo con los valores dese
 ##### Respuesta esperada
 ```JSON
 {
-	"" : "",
+    "codigo": "",
+    "detalle": ""
 }
 ```
+##### Interpretación
+
+La respuesta esperada contiene 2 campos: el código y el detalle.
+
+De momento, existen 7 códigos de estatus que puede presentar este endpoint. Este código es diferente al estatus de la petición HTTP.
+| Código | Significado |
+| --- | --- |
+| OK  | Operación exitosa |
+| E10 | El usuario no tiene suficientes fondos para la inversión indicada |
+| E11 | Por un error desconocido, no se pudo modificar el saldo del usuario |
+| E20 | La oportunidad indicada necesita menos dinero para alcanzar su meta de inversión de lo que el usuario desea invertir |
+| E31 | Hubo un error interno al guardar el registro de relación entre usuario y oportunidad |
+| E91 | Hubo un error interno |
+
+El primer número de error indica en qué parte de la operación falló.
+
+1. Modificando la tabla de usuarios
+2. Modificando la tabla de oportunidades
+3. Modificando la tabla de relación entre usuarios y oportunidades
+
+El segundo número del código predice el origen del error. Los errores que terminan con un número mayor a cero son errores internos del servidor. Los que terminan con un número cero son por error de la petición.
+
+El detalle simplemente es un mensae explicando el error.
