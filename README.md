@@ -7,6 +7,7 @@
 - [Node.js](https://nodejs.org/en/)
 	- Versión para Windows 14.18.1
 	- La única dependencia que se usa es el módulo _pg_. Se puede instalar con el siguiente comando
+
 		`npm install pg`
 - [PostgreSQL](https://www.postgresql.org/download/)
 	- Versión 10.21
@@ -24,6 +25,7 @@
 3. Ingresar datos de prueba en la base de datos
 	1. Si se desean generar datos nuevos para ingresar, proseguir al paso 3.2. Si se desean usar los mismos datos con los que se hicieron pruebas, saltar al paso 3.3.
 	2. Correr el script _generate_db_data.py_. Como el script imprime directo al a consola, se sugiere correrlo de la siguiente manera:
+		
 		`python gerenerate_db_data.py > insert_data.sql`
 		- Esto generará un script SQL para insertar 20 usuarios y 10 oportunidades. 
     	- Cada oportunidad tendrá una meta de inversión de entre $1 y $1000.
@@ -79,6 +81,8 @@ El primer número de error indica en qué parte de la operación falló.
 2. Modificando la tabla de oportunidades
 3. Modificando la tabla de relación entre usuarios y oportunidades
 
-El segundo número del código predice el origen del error. Los errores que terminan con un número mayor a cero son errores internos del servidor. Los que terminan con un número cero son por error de la petición.
+El 9 se usa para errores internos generales.
+
+El segundo número del código determina el origen del error. Los errores que terminan con un número mayor a cero son errores internos del servidor. Los que terminan con un número cero son por error de la petición.
 
 El detalle simplemente es un mensae explicando el error.
